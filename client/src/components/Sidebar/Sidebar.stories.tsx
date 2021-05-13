@@ -8,6 +8,7 @@ import { PageExplorerMenuItemDefinition } from './menu/PageExplorerMenuItem';
 import { LinkMenuItemDefinition } from './menu/LinkMenuItem';
 import { SubMenuItemDefinition } from './menu/SubMenuItem';
 import { initFocusOutline } from '../../utils/focus';
+import SVGIconSprite from '../SVGIconSprite';
 
 // eslint-disable-next-line import/no-unresolved
 import '../../../../wagtail/admin/static/wagtailadmin/css/sidebar.css';
@@ -224,6 +225,7 @@ function renderSidebarStory(modules: ModuleDefinition[]) {
 
   return (
     <div className="wrapper">
+      <SVGIconSprite />
       <Sidebar
         modules={modules}
         currentPath={currentPath}
