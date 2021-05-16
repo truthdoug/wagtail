@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const handleClick = (href, onClick, preventDefault, e) => {
+const handleClick = (href, onClick, preventDefault, navigate, e) => {
   if (preventDefault && href === '#') {
     e.preventDefault();
     e.stopPropagation();
@@ -9,6 +9,12 @@ const handleClick = (href, onClick, preventDefault, e) => {
 
   if (onClick) {
     onClick(e);
+  }
+
+  // If a navigate hander has been specified, replace the default behaviour
+  if (navigate && !e.defaultPrevented) {
+    e.preventDefault();
+    navigate(href);
   }
 };
 
@@ -24,6 +30,7 @@ const Button = ({
   preventDefault,
   onClick,
   dialogTrigger,
+  navigate,
 }) => {
   const hasText = children !== null;
   const accessibleElt = accessibleLabel ? (
@@ -35,7 +42,7 @@ const Button = ({
   return (
     <a
       className={className}
-      onClick={handleClick.bind(null, href, onClick, preventDefault)}
+      onClick={handleClick.bind(null, href, onClick, preventDefault, navigate)}
       rel={target === '_blank' ? 'noopener noreferrer' : null}
       href={href}
       target={target}
@@ -56,6 +63,7 @@ Button.propTypes = {
   isLoading: PropTypes.bool,
   preventDefault: PropTypes.bool,
   dialogTrigger: PropTypes.bool,
+  navigate: PropTypes.func,
 };
 
 Button.defaultProps = {
@@ -68,6 +76,7 @@ Button.defaultProps = {
   isLoading: false,
   preventDefault: true,
   dialogTrigger: false,
+  navigate: null,
 };
 
 export default Button;
