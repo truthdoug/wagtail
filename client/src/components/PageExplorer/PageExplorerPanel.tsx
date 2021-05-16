@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
-import FocusTrap from 'focus-trap-react';
+// import FocusTrap from 'focus-trap-react';
 
 import { STRINGS, MAX_EXPLORER_PAGES } from '../../config/wagtailConfig';
 
@@ -54,17 +54,17 @@ class PageExplorerPanel extends React.Component<PageExplorerPanelProps, PageExpl
   }
 
   componentDidMount() {
-    document.querySelector('[data-explorer-menu-item]')?.classList.add('submenu-active');
-    document.body.classList.add('explorer-open');
-    document.addEventListener('mousedown', this.clickOutside);
-    document.addEventListener('touchend', this.clickOutside);
+    //document.querySelector('[data-explorer-menu-item]')?.classList.add('submenu-active');
+    //document.body.classList.add('explorer-open');
+    //document.addEventListener('mousedown', this.clickOutside);
+    //document.addEventListener('touchend', this.clickOutside);
   }
 
   componentWillUnmount() {
-    document.querySelector('[data-explorer-menu-item]')?.classList.remove('submenu-active');
-    document.body.classList.remove('explorer-open');
-    document.removeEventListener('mousedown', this.clickOutside);
-    document.removeEventListener('touchend', this.clickOutside);
+    //document.querySelector('[data-explorer-menu-item]')?.classList.remove('submenu-active');
+    //document.body.classList.remove('explorer-open');
+    //document.removeEventListener('mousedown', this.clickOutside);
+    //document.removeEventListener('touchend', this.clickOutside);
   }
 
   clickOutside(e) {
@@ -152,17 +152,17 @@ class PageExplorerPanel extends React.Component<PageExplorerPanelProps, PageExpl
   }
 
   render() {
-    const { page, onClose, depth, gotoPage } = this.props;
-    const { transition, paused } = this.state;
+    const { page, /* onClose */ depth, gotoPage } = this.props;
+    const { transition /* paused */ } = this.state;
 
     return (
-      <FocusTrap
+/*      <FocusTrap
         paused={paused || !page || page.isFetchingChildren || page.isFetchingTranslations}
         focusTrapOptions={{
           initialFocus: '.c-page-explorer__header__title',
           onDeactivate: onClose,
         }}
-      >
+      >*/
         <div
           role="dialog"
           className="page-explorer-panel"
@@ -187,7 +187,7 @@ class PageExplorerPanel extends React.Component<PageExplorerPanelProps, PageExpl
             </div>
           </Transition>
         </div>
-      </FocusTrap>
+/*      </FocusTrap>*/
     );
   }
 }
