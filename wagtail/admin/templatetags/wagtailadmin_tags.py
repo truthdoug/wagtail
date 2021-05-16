@@ -673,6 +673,11 @@ def locales():
     ])
 
 
+@register.simple_tag()
+def slim_sidebar_enabled():
+    return 'slim-sidebar' in getattr(settings, 'WAGTAIL_EXPERIMENTAL_FEATURES', [])
+
+
 @register.simple_tag(takes_context=True)
 def menu_props(context):
     request = context['request']
